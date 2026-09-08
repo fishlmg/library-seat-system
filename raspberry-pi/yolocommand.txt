@@ -1,0 +1,9 @@
+ssh:   ssh -p 28934 root@<GPU_SERVER>
+pip install Ultralytics
+yolo detect train data=detection.yaml model=yolov8n.pt epochs=200 imgsz=640
+cp -r /mnt/yolov8n.pt /root/
+cp /mnt/Arial.ttf /root/.config/Ultralytics/Arial.ttf
+ cp -r /mnt/datasets ~
+
+
+cp -r runs/detect/train2 /mnt

@@ -1,0 +1,11 @@
+ultralytics
+opencv-python
+onnxruntime
+requests
+numpy
+matplotlib
+pillow
+keyboard
+# 以下为树莓派硬件相关，仅在树莓派上需要：
+# picamera
+# torch / torchvision（树莓派建议使用官方 ARM wheel）

@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# 环境变量与密钥（.env.example 保留作为模板）
+.env
+.env.local
+.env.*.local
+
+# 编辑器
+.vscode/
+
+# 模型权重（保留在本地，不入库）
+*.pt
+*.onnx
+*.pth
+*.pkl
+
+# 数据集与训练输出
+raspberry-pi/library/datasets*/
+raspberry-pi/runs/
+raspberry-pi/yoloruns/
+
+# 压缩包与安装包
+*.zip
+*.rar
+*.deb
+
+# 推理输出日志
+raspberry-pi/predictions.txt
+
+.DS_Store
