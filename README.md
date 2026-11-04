@@ -45,11 +45,11 @@
 └── raspberry-pi/                   # 检测端（树莓派）
     ├── camera.py                   # 摄像头检测 + 上报（主程序）
     ├── camera_without_saving.py    # 不落盘版本
-    ├── new.py / comp.py / ...      # 各迭代版本与计数/比对脚本
     ├── pt_to_onnx.py               # 模型转换（PyTorch → ONNX）
-    ├── .env.example                # 环境变量模板
-    ├── GLIP/                       # GLIP 检测试验
-    └── rassberyypi/                # 树莓派外设脚本（拍照、视频、调焦、训练）
+    ├── requirements.txt
+    ├── .env.example                # 环境变量模板（上报地址与密码）
+    ├── raspberrypi/                # 外设脚本（预览、拍照、录像；原 rassberyypi/）
+    └── archive/                    # 迭代脚本与试验，不是部署入口
 ```
 
 ## 🚀 后端部署（server/）
@@ -92,6 +92,8 @@ cp .env.example .env        # 填写 SEAT_SERVER_HOST / SEAT_SERVER_PASSWORD
 python camera.py            # 启动摄像头检测并上报
 ```
 
+上报只走上面的 `camera.py`（或不落盘的 `camera_without_saving.py`）。`archive/` 是早期原型、计数和数据集缩放试验；`raspberrypi/` 是预览、拍照、录像等外设脚本。两个目录都有自己的说明文件。
+
 **环境变量：**
 
 | 变量 | 说明 |
@@ -107,7 +109,12 @@ python camera.py            # 启动摄像头检测并上报
 ## 📝 说明
 
 - YOLO 模型权重（`.pt` / `.onnx`）、训练数据集与训练输出不包含在仓库中（`.gitignore` 已排除）
-- `raspberry-pi/` 保留了较多开发迭代脚本（`hzx.py`、`tp.py`、`count*.py` 等），反映从原型到部署的演进过程
+- 开发过程中的原型脚本已移到 `raspberry-pi/archive/`。三份图片缩放脚本（原 `cahnge_the_size.py`、`changesizes.py`、`resize_2.py`）规则不同，只改名、不合并，对照见该目录说明
+- `pt_to_onnx.py` 里的 `D:/Library_seat _query/rassberyypi` 是当时的本机导出目录，不是本仓库路径，本次未改脚本
+
+## 🔗 相关项目
+
+- [yolo-seat-detection](https://github.com/fishlmg/yolo-seat-detection)：图书馆座位占用检测模型的训练、评估与 ONNX 导出。本仓库的树莓派端加载其权重做摄像头推理和结果上报，网页与数据库在 `server/`。
 
 ## 📄 许可证
 
